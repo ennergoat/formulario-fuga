@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Análisis de Fugas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Formulario de Análisis de Fugas</h1>
+            <p>Complete todos los campos requeridos para generar el análisis de fugas</p>
+        </header>
+        
+        <form id="analisisForm">
+            <div class="form-section">
+                <h2>Información del Predio</h2>
+                
+                <div class="form-group">
+                    <label class="required">Magnitud del Predio</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="magnitud_predio" value="Residencial" required> Residencial</label>
+                        <label><input type="radio" name="magnitud_predio" value="Comercial" required> Comercial</label>
+                    </div>
+                    <div id="comercial-detalle" class="conditional-field">
+                        <label for="comercial-detalle-text">Especifique tipo de comercio</label>
+                        <input type="text" id="comercial-detalle-text" name="comercial_detalle" placeholder="Ingrese el tipo de comercio">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">¿Cómo se abastece?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="abastecimiento" value="Sistema directo" required> Sistema directo</label>
+                        <label><input type="radio" name="abastecimiento" value="Medidor sisterna" required> Medidor sisterna</label>
+                        <label><input type="radio" name="abastecimiento" value="Otra" required> Otra</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Detección de Fugas</h2>
+                
+                <div class="form-group">
+                    <label class="required">¿Se visualizan fugas?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="fugas_visibles" value="Sí" required> Sí</label>
+                        <label><input type="radio" name="fugas_visibles" value="No" required> No</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">¿Registra caudal de ingreso con equipo cerrado?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
+                        <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                    </div>
+                    <div id="caudal-detalle" class="conditional-field">
+                        <label for="caudal-detalle-text">¿Cuál es el caudal de ingreso?</label>
+                        <input type="text" id="caudal-detalle-text" name="caudal_detalle" placeholder="Ingrese el caudal de ingreso">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Análisis Específico</h2>
+                
+                <div class="form-group">
+                    <label class="required">¿Predio residencial de bajos recursos con fugas visibles?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="fugas_bajos_recursos" value="Sí" required> Sí</label>
+                        <label><input type="radio" name="fugas_bajos_recursos" value="No" required> No</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">¿Existen fugas?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="existen_fugas" value="Sí" required> Sí</label>
+                        <label><input type="radio" name="existen_fugas" value="No" required> No</label>
+                    </div>
+                    <div id="recomendacion-fugas" class="info-message">
+                        <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
+                    </div>
+                    <div id="analisis-consumo" class="info-message">
+                        <strong>Análisis:</strong> Análisis de perfil de consumo
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button type="button" class="btn-submit" onclick="generarResumen()">Generar Análisis</button>
+            </div>
+        </form>
+        
+        <div id="resumen">
+            <div class="success-message">
+                <h2>¡Análisis de Fugas Generado!</h2>
+                <p>El siguiente es el resumen del análisis realizado:</p>
+            </div>
+            
+            <h2>Resumen del Análisis</h2>
+            <button id="copiar-resumen" class="btn-copiar">
+                📋 Copiar Resumen
+            </button>
+            <div class="resumen-content" id="resumen-contenido">
+                <!-- Aquí se generará el resumen con el formato específico -->
+            </div>
+            
+            <div class="buttons" style="margin-top: 20px;">
+                <button type="button" class="btn-submit" onclick="window.print()">Imprimir Análisis</button>
+                <button type="button" style="background-color: #0e4f88; margin-left: 10px;" onclick="volverAlFormulario()">Realizar Otro Análisis</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
