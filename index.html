@@ -3,114 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Análisis de Fugas</title>
+    <title>Sistema de Análisis de Consumo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Formulario de Análisis de Fugas</h1>
-            <p>Complete todos los campos requeridos para generar el análisis de fugas</p>
-        </header>
+        <!-- Menú de selección -->
+        <div id="menu" class="menu-section active">
+            <header>
+                <h1>Sistema de Análisis de Consumo</h1>
+                <p>Seleccione el tipo de formulario que desea completar</p>
+            </header>
+            
+            <div class="menu-options">
+                <div class="menu-card" onclick="seleccionarFormulario('residencial')">
+                    <div class="menu-icon">🏠</div>
+                    <h3>Residenciales</h3>
+                    <p>Formulario para análisis de consumo en viviendas</p>
+                </div>
+                
+                <div class="menu-card" onclick="seleccionarFormulario('comercial')">
+                    <div class="menu-icon">🏢</div>
+                    <h3>Comerciales - Industriales</h3>
+                    <p>Formulario para análisis de consumo en negocios e industrias</p>
+                </div>
+            </div>
+        </div>
         
-        <form id="analisisForm">
-            <div class="form-section">
-                <h2>Información del Predio</h2>
-                
-                <div class="form-group">
-                    <label class="required">Magnitud del Predio</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="magnitud_predio" value="Residencial" required> Residencial</label>
-                        <label><input type="radio" name="magnitud_predio" value="Comercial" required> Comercial</label>
-                    </div>
-                    <div id="comercial-detalle" class="conditional-field">
-                        <label for="comercial-detalle-text">Especifique tipo de comercio</label>
-                        <input type="text" id="comercial-detalle-text" name="comercial_detalle" placeholder="Ingrese el tipo de comercio">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="required">¿Cómo se abastece?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="abastecimiento" value="Sistema directo" required> Sistema directo</label>
-                        <label><input type="radio" name="abastecimiento" value="Medidor sisterna" required> Medidor sisterna</label>
-                        <label><input type="radio" name="abastecimiento" value="Otra" required> Otra</label>
-                    </div>
-                </div>
-            </div>
+        <!-- Formulario Residencial -->
+        <div id="formulario-residencial" class="formulario">
+            <header>
+                <h1>Formulario Residencial</h1>
+                <p>Complete todos los campos requeridos para el análisis de consumo</p>
+                <button class="btn-volver" onclick="volverAlMenu()">← Volver al Menú</button>
+            </header>
             
-            <div class="form-section">
-                <h2>Detección de Fugas</h2>
-                
-                <div class="form-group">
-                    <label class="required">¿Se visualizan fugas?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="fugas_visibles" value="Sí" required> Sí</label>
-                        <label><input type="radio" name="fugas_visibles" value="No" required> No</label>
+            <form id="formResidencial">
+                <div class="form-section">
+                    <h2>Datos Básicos</h2>
+                    
+                    <div class="form-group">
+                        <label for="res-numero-medidor" class="required">Número de medidor</label>
+                        <input type="number" id="res-numero-medidor" name="numero_medidor" required placeholder="Ingrese el número de medidor">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-lectura" class="required">Lectura</label>
+                        <input type="number" id="res-lectura" name="lectura" required placeholder="Ingrese la lectura">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-contrato" class="required">Contrato</label>
+                        <input type="number" id="res-contrato" name="contrato" required placeholder="Ingrese el número de contrato">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-personas" class="required">¿Cuántas personas habitan en el predio?</label>
+                        <input type="number" id="res-personas" name="personas" required placeholder="Ingrese el número de personas">
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label class="required">¿Registra caudal de ingreso con equipo cerrado?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
-                        <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                <div class="form-section">
+                    <h2>Información de Consumo</h2>
+                    
+                    <!-- <div class="form-group">
+                        <label for="res-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
+                        <select id="res-abastecimiento" name="abastecimiento" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Directo">Directo</option>
+                            <option value="Cisterna">Cisterna</option>
+                            <option value="Tanque elevado">Tanque elevado</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div> -->
+                    
+                    <div class="form-group">
+                        <label for="res-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
+                        <select id="res-abastecimiento" name="abastecimiento" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Directo">Directo</option>
+                            <option value="Cisterna">Cisterna</option>
+                            <option value="Tanque elevado">Tanque elevado</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <div id="res-abastecimiento-otro" class="conditional-field">
+                            <label for="res-abastecimiento-otro-text">Especifique el tipo de abastecimiento</label>
+                            <input type="text" id="res-abastecimiento-otro-text" name="abastecimiento_otro" placeholder="Ingrese el tipo de abastecimiento">
+                        </div>
                     </div>
-                    <div id="caudal-detalle" class="conditional-field">
-                        <label for="caudal-detalle-text">¿Cuál es el caudal de ingreso?</label>
-                        <input type="text" id="caudal-detalle-text" name="caudal_detalle" placeholder="Ingrese el caudal de ingreso">
+
+
+                    <div class="form-group">
+                        <label class="required">¿Ha habido cambios en el número de habitantes en los últimos 6-12 meses?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="cambios_habitantes" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="cambios_habitantes" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Ha considerado que su consumo ha aumentado?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="consumo_aumentado" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="consumo_aumentado" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div id="res-mes-aumento-group" class="form-group" style="display: none;">
+                        <label for="res-mes-aumento" class="required">¿Desde cuándo notó el aumento en el consumo?</label>
+                        <select id="res-mes-aumento" name="mes_aumento" required>
+                            <option value="">Seleccione un mes</option>
+                            <option value="Enero">Enero</option>
+                            <option value="Febrero">Febrero</option>
+                            <option value="Marzo">Marzo</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Junio">Junio</option>
+                            <option value="Julio">Julio</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Septiembre">Septiembre</option>
+                            <option value="Octubre">Octubre</option>
+                            <option value="Noviembre">Noviembre</option>
+                            <option value="Diciembre">Diciembre</option>
+                        </select>
                     </div>
                 </div>
-            </div>
+                
+                <div class="form-section">
+                    <h2>Detección de Fugas</h2>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Ha detectado problemas de fugas?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="fugas_detectadas" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Se realiza prueba de consumo?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Registra caudal de ingreso?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                        </div>
+                        <div id="res-caudal-detalle" class="conditional-field">
+                            <label for="res-caudal-cantidad">Cuantificar registro (Litros/min)</label>
+                            <input type="number" id="res-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
+                        </div>
+                        <div id="res-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn-submit" onclick="generarResumenResidencial()">Generar Análisis</button>
+                </div>
+            </form>
             
-            <div class="form-section">
-                <h2>Análisis Específico</h2>
-                
-                <div class="form-group">
-                    <label class="required">¿Predio residencial de bajos recursos con fugas visibles?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="fugas_bajos_recursos" value="Sí" required> Sí</label>
-                        <label><input type="radio" name="fugas_bajos_recursos" value="No" required> No</label>
-                    </div>
+            <div id="resumen-residencial" class="resumen">
+                <div class="success-message">
+                    <h2>¡Análisis Residencial Generado!</h2>
+                    <p>El siguiente es el resumen del análisis realizado:</p>
                 </div>
                 
-                <div class="form-group">
-                    <label class="required">¿Existen fugas?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="existen_fugas" value="Sí" required> Sí</label>
-                        <label><input type="radio" name="existen_fugas" value="No" required> No</label>
-                    </div>
-                    <div id="recomendacion-fugas" class="info-message">
-                        <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
-                    </div>
-                    <div id="analisis-consumo" class="info-message">
-                        <strong>Análisis:</strong> Análisis de perfil de consumo
-                    </div>
+                <h2>Resumen del Análisis Residencial</h2>
+                <button id="copiar-resumen-residencial" class="btn-copiar">
+                    📋 Copiar Resumen
+                </button>
+                <div class="resumen-content" id="resumen-contenido-residencial">
+                    <!-- Aquí se generará el resumen -->
+                </div>
+                
+                <div class="buttons" style="margin-top: 20px;">
+                    <button type="button" class="btn-submit" onclick="window.print()">Imprimir Análisis</button>
+                    <button type="button" style="background-color: #0e4f88; margin-left: 10px;" onclick="volverAlFormularioResidencial()">Realizar Otro Análisis</button>
                 </div>
             </div>
-            
-            <div class="buttons">
-                <button type="button" class="btn-submit" onclick="generarResumen()">Generar Análisis</button>
-            </div>
-        </form>
+        </div>
         
-        <div id="resumen">
-            <div class="success-message">
-                <h2>¡Análisis de Fugas Generado!</h2>
-                <p>El siguiente es el resumen del análisis realizado:</p>
-            </div>
+        <!-- Formulario Comercial-Industrial -->
+        <div id="formulario-comercial" class="formulario">
+            <header>
+                <h1>Formulario Comercial - Industrial</h1>
+                <p>Complete todos los campos requeridos para el análisis de consumo</p>
+                <button class="btn-volver" onclick="volverAlMenu()">← Volver al Menú</button>
+            </header>
             
-            <h2>Resumen del Análisis</h2>
-            <button id="copiar-resumen" class="btn-copiar">
-                📋 Copiar Resumen
-            </button>
-            <div class="resumen-content" id="resumen-contenido">
-                <!-- Aquí se generará el resumen con el formato específico -->
-            </div>
+            <form id="formComercial">
+                <div class="form-section">
+                    <h2>Datos Básicos</h2>
+                    
+                    <div class="form-group">
+                        <label for="com-numero-medidor" class="required">Número de medidor</label>
+                        <input type="number" id="com-numero-medidor" name="numero_medidor" required placeholder="Ingrese el número de medidor">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-lectura" class="required">Lectura</label>
+                        <input type="number" id="com-lectura" name="lectura" required placeholder="Ingrese la lectura">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-contrato" class="required">Contrato</label>
+                        <input type="number" id="com-contrato" name="contrato" required placeholder="Ingrese el número de contrato">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-actividad" class="required">¿Qué actividad llevan a cabo?</label>
+                        <input type="text" id="com-actividad" name="actividad" required placeholder="Describa la actividad">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Información Operativa</h2>
+                    
+                    <!-- <div class="form-group">
+                        <label for="com-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
+                        <select id="com-abastecimiento" name="abastecimiento" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Directo">Directo</option>
+                            <option value="Cisterna">Cisterna</option>
+                            <option value="Tanque elevado">Tanque elevado</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="com-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
+                        <select id="com-abastecimiento" name="abastecimiento" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Directo">Directo</option>
+                            <option value="Cisterna">Cisterna</option>
+                            <option value="Tanque elevado">Tanque elevado</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <div id="com-abastecimiento-otro" class="conditional-field">
+                            <label for="com-abastecimiento-otro-text">Especifique el tipo de abastecimiento</label>
+                            <input type="text" id="com-abastecimiento-otro-text" name="abastecimiento_otro" placeholder="Ingrese el tipo de abastecimiento">
+                        </div>
+                    </div>
+
+
+
+                    
+                    <div class="form-group">
+                        <label for="com-empleados" class="required">¿Cuántos empleados/personas trabajan diariamente en el predio?</label>
+                        <input type="number" id="com-empleados" name="empleados" required placeholder="Ingrese el número de empleados">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Tienen horarios específicos de operación?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="horarios_especificos" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="horarios_especificos" value="No" required> No</label>
+                        </div>
+                        <div id="com-horario-detalle" class="conditional-field">
+                            <label for="com-horario">Indique el horario</label>
+                            <input type="text" id="com-horario" name="horario" placeholder="Ej: Lunes a Viernes 8:00-18:00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Cómo es el consumo?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="tipo_consumo" value="constante todos los días" required> Constante todos los días</label>
+                            <label><input type="radio" name="tipo_consumo" value="varía según producción/actividad" required> Varía según producción/actividad</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Detección de Fugas</h2>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Ha detectado problemas de fugas?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="fugas_detectadas" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Se realiza prueba de consumo?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Registra caudal de ingreso?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                        </div>
+                        <div id="com-caudal-detalle" class="conditional-field">
+                            <label for="com-caudal-cantidad">Cuantificar registro (Litros/min)</label>
+                            <input type="number" id="com-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
+                        </div>
+                        <div id="com-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn-submit" onclick="generarResumenComercial()">Generar Análisis</button>
+                </div>
+            </form>
             
-            <div class="buttons" style="margin-top: 20px;">
-                <button type="button" class="btn-submit" onclick="window.print()">Imprimir Análisis</button>
-                <button type="button" style="background-color: #0e4f88; margin-left: 10px;" onclick="volverAlFormulario()">Realizar Otro Análisis</button>
+            <div id="resumen-comercial" class="resumen">
+                <div class="success-message">
+                    <h2>¡Análisis Comercial-Industrial Generado!</h2>
+                    <p>El siguiente es el resumen del análisis realizado:</p>
+                </div>
+                
+                <h2>Resumen del Análisis Comercial-Industrial</h2>
+                <button id="copiar-resumen-comercial" class="btn-copiar">
+                    📋 Copiar Resumen
+                </button>
+                <div class="resumen-content" id="resumen-contenido-comercial">
+                    <!-- Aquí se generará el resumen -->
+                </div>
+                
+                <div class="buttons" style="margin-top: 20px;">
+                    <button type="button" class="btn-submit" onclick="window.print()">Imprimir Análisis</button>
+                    <button type="button" style="background-color: #0e4f88; margin-left: 10px;" onclick="volverAlFormularioComercial()">Realizar Otro Análisis</button>
+                </div>
             </div>
         </div>
     </div>
