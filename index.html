@@ -43,18 +43,44 @@
                     <h2>Datos Básicos</h2>
                     
                     <div class="form-group">
-                        <label for="res-numero-medidor" class="required">Número de medidor</label>
-                        <input type="number" id="res-numero-medidor" name="numero_medidor" required placeholder="Ingrese el número de medidor">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="res-lectura" class="required">Lectura</label>
-                        <input type="number" id="res-lectura" name="lectura" required placeholder="Ingrese la lectura">
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="res-contrato" class="required">Contrato</label>
                         <input type="number" id="res-contrato" name="contrato" required placeholder="Ingrese el número de contrato">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-servicio" class="required">Servicio</label>
+                        <select id="res-servicio" name="servicio" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Suspendido">Suspendido</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">Estado del medidor</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="estado_medidor" value="Buen estado" required> Buen estado</label>
+                            <label><input type="radio" name="estado_medidor" value="Mal estado" required> Mal estado</label>
+                        </div>
+                        <div id="res-estado-medidor-mal" class="conditional-field">
+                            <label for="res-estado-medidor-desc">Describa el estado del medidor</label>
+                            <input type="text" id="res-estado-medidor-desc" name="estado_medidor_desc" placeholder="Describa el problema">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-lectura-m3" class="required">Lectura (m³)</label>
+                        <input type="number" id="res-lectura-m3" name="lectura_m3" required placeholder="Ingrese la lectura en m³">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-lectura-litros">Lectura (litros)</label>
+                        <input type="number" id="res-lectura-litros" name="lectura_litros" placeholder="Ingrese la lectura en litros">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="res-descripcion" class="required">Descripción de casa</label>
+                        <input type="text" id="res-descripcion" name="descripcion" required placeholder="Describa la vivienda">
                     </div>
                     
                     <div class="form-group">
@@ -65,17 +91,6 @@
                 
                 <div class="form-section">
                     <h2>Información de Consumo</h2>
-                    
-                    <!-- <div class="form-group">
-                        <label for="res-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
-                        <select id="res-abastecimiento" name="abastecimiento" required>
-                            <option value="">Seleccione una opción</option>
-                            <option value="Directo">Directo</option>
-                            <option value="Cisterna">Cisterna</option>
-                            <option value="Tanque elevado">Tanque elevado</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div> -->
                     
                     <div class="form-group">
                         <label for="res-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
@@ -92,40 +107,12 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label class="required">¿Ha habido cambios en el número de habitantes en los últimos 6-12 meses?</label>
                         <div class="radio-group">
                             <label><input type="radio" name="cambios_habitantes" value="Sí" required> Sí</label>
                             <label><input type="radio" name="cambios_habitantes" value="No" required> No</label>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Ha considerado que su consumo ha aumentado?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="consumo_aumentado" value="Sí" required> Sí</label>
-                            <label><input type="radio" name="consumo_aumentado" value="No" required> No</label>
-                        </div>
-                    </div>
-                    
-                    <div id="res-mes-aumento-group" class="form-group" style="display: none;">
-                        <label for="res-mes-aumento" class="required">¿Desde cuándo notó el aumento en el consumo?</label>
-                        <select id="res-mes-aumento" name="mes_aumento" required>
-                            <option value="">Seleccione un mes</option>
-                            <option value="Enero">Enero</option>
-                            <option value="Febrero">Febrero</option>
-                            <option value="Marzo">Marzo</option>
-                            <option value="Abril">Abril</option>
-                            <option value="Mayo">Mayo</option>
-                            <option value="Junio">Junio</option>
-                            <option value="Julio">Julio</option>
-                            <option value="Agosto">Agosto</option>
-                            <option value="Septiembre">Septiembre</option>
-                            <option value="Octubre">Octubre</option>
-                            <option value="Noviembre">Noviembre</option>
-                            <option value="Diciembre">Diciembre</option>
-                        </select>
                     </div>
                 </div>
                 
@@ -135,8 +122,16 @@
                     <div class="form-group">
                         <label class="required">¿Ha detectado problemas de fugas?</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="fugas_detectadas" value="Sí" required> Sí</label>
                             <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Fuga visible" required> Fuga visible</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Fuga no visible" required> Fuga no visible</label>
+                        </div>
+                        <div id="res-fuga-visible" class="conditional-field">
+                            <label for="res-ubicacion-fuga">¿Dónde es la fuga?</label>
+                            <input type="text" id="res-ubicacion-fuga" name="ubicacion_fuga" placeholder="Describa la ubicación de la fuga">
+                        </div>
+                        <div id="res-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
                         </div>
                     </div>
                     
@@ -157,9 +152,6 @@
                         <div id="res-caudal-detalle" class="conditional-field">
                             <label for="res-caudal-cantidad">Cuantificar registro (Litros/min)</label>
                             <input type="number" id="res-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
-                        </div>
-                        <div id="res-recomendacion-fugas" class="info-message">
-                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
                         </div>
                     </div>
                 </div>
@@ -203,40 +195,60 @@
                     <h2>Datos Básicos</h2>
                     
                     <div class="form-group">
-                        <label for="com-numero-medidor" class="required">Número de medidor</label>
-                        <input type="number" id="com-numero-medidor" name="numero_medidor" required placeholder="Ingrese el número de medidor">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="com-lectura" class="required">Lectura</label>
-                        <input type="number" id="com-lectura" name="lectura" required placeholder="Ingrese la lectura">
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="com-contrato" class="required">Contrato</label>
                         <input type="number" id="com-contrato" name="contrato" required placeholder="Ingrese el número de contrato">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-servicio" class="required">Servicio</label>
+                        <select id="com-servicio" name="servicio" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Suspendido">Suspendido</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">Estado del medidor</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="estado_medidor" value="Buen estado" required> Buen estado</label>
+                            <label><input type="radio" name="estado_medidor" value="Mal estado" required> Mal estado</label>
+                        </div>
+                        <div id="com-estado-medidor-mal" class="conditional-field">
+                            <label for="com-estado-medidor-desc">Describa el estado del medidor</label>
+                            <input type="text" id="com-estado-medidor-desc" name="estado_medidor_desc" placeholder="Describa el problema">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-lectura-m3" class="required">Lectura (m³)</label>
+                        <input type="number" id="com-lectura-m3" name="lectura_m3" required placeholder="Ingrese la lectura en m³">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-lectura-litros">Lectura (litros)</label>
+                        <input type="number" id="com-lectura-litros" name="lectura_litros" placeholder="Ingrese la lectura en litros">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="com-descripcion" class="required">Descripción del local/industria</label>
+                        <input type="text" id="com-descripcion" name="descripcion" required placeholder="Describa el local o industria">
                     </div>
                     
                     <div class="form-group">
                         <label for="com-actividad" class="required">¿Qué actividad llevan a cabo?</label>
                         <input type="text" id="com-actividad" name="actividad" required placeholder="Describa la actividad">
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="com-empleados" class="required">¿Cuántos empleados/personas trabajan diariamente en el predio?</label>
+                        <input type="number" id="com-empleados" name="empleados" required placeholder="Ingrese el número de empleados">
+                    </div>
                 </div>
                 
                 <div class="form-section">
                     <h2>Información Operativa</h2>
                     
-                    <!-- <div class="form-group">
-                        <label for="com-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
-                        <select id="com-abastecimiento" name="abastecimiento" required>
-                            <option value="">Seleccione una opción</option>
-                            <option value="Directo">Directo</option>
-                            <option value="Cisterna">Cisterna</option>
-                            <option value="Tanque elevado">Tanque elevado</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div> -->
-
                     <div class="form-group">
                         <label for="com-abastecimiento" class="required">¿Cuál es su tipo de abastecimiento?</label>
                         <select id="com-abastecimiento" name="abastecimiento" required>
@@ -250,14 +262,6 @@
                             <label for="com-abastecimiento-otro-text">Especifique el tipo de abastecimiento</label>
                             <input type="text" id="com-abastecimiento-otro-text" name="abastecimiento_otro" placeholder="Ingrese el tipo de abastecimiento">
                         </div>
-                    </div>
-
-
-
-                    
-                    <div class="form-group">
-                        <label for="com-empleados" class="required">¿Cuántos empleados/personas trabajan diariamente en el predio?</label>
-                        <input type="number" id="com-empleados" name="empleados" required placeholder="Ingrese el número de empleados">
                     </div>
                     
                     <div class="form-group">
@@ -287,8 +291,16 @@
                     <div class="form-group">
                         <label class="required">¿Ha detectado problemas de fugas?</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="fugas_detectadas" value="Sí" required> Sí</label>
                             <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Fuga visible" required> Fuga visible</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Fuga no visible" required> Fuga no visible</label>
+                        </div>
+                        <div id="com-fuga-visible" class="conditional-field">
+                            <label for="com-ubicacion-fuga">¿Dónde es la fuga?</label>
+                            <input type="text" id="com-ubicacion-fuga" name="ubicacion_fuga" placeholder="Describa la ubicación de la fuga">
+                        </div>
+                        <div id="com-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
                         </div>
                     </div>
                     
@@ -309,9 +321,6 @@
                         <div id="com-caudal-detalle" class="conditional-field">
                             <label for="com-caudal-cantidad">Cuantificar registro (Litros/min)</label>
                             <input type="number" id="com-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
-                        </div>
-                        <div id="com-recomendacion-fugas" class="info-message">
-                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
                         </div>
                     </div>
                 </div>

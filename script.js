@@ -1,8 +1,12 @@
+// script.js - Versión corregida y funcional
+
 // Variables globales
 let formularioActual = '';
 
 // Función para seleccionar formulario desde el menú
 function seleccionarFormulario(tipo) {
+    console.log('Seleccionando formulario:', tipo); // Para debug
+    
     // Ocultar todo
     document.getElementById('menu').classList.remove('active');
     document.getElementById('formulario-residencial').classList.remove('active');
@@ -37,95 +41,158 @@ function volverAlMenu() {
     formularioActual = '';
 }
 
-// Manejo de campos condicionales para formulario residencial
+// Manejo de campos condicionales
 document.addEventListener('DOMContentLoaded', function() {
-    // Formulario Residencial - Caudal de ingreso
-    document.querySelectorAll('#formResidencial input[name="caudal_ingreso"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const detalleField = document.getElementById('res-caudal-detalle');
-            const recomendacionField = document.getElementById('res-recomendacion-fugas');
-            
-            if (this.value === 'Sí') {
-                detalleField.classList.add('active');
-                recomendacionField.classList.add('active');
-            } else {
-                detalleField.classList.remove('active');
-                recomendacionField.classList.remove('active');
-            }
-        });
-    });
+    console.log('DOM cargado - Configurando event listeners'); // Para debug
     
-    // Formulario Comercial - Horarios específicos
-    document.querySelectorAll('#formComercial input[name="horarios_especificos"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const detalleField = document.getElementById('com-horario-detalle');
-            
-            if (this.value === 'Sí') {
-                detalleField.classList.add('active');
-            } else {
-                detalleField.classList.remove('active');
-            }
-        });
-    });
+    // ========== FORMULARIO RESIDENCIAL ==========
     
-    // Formulario Comercial - Caudal de ingreso
-    document.querySelectorAll('#formComercial input[name="caudal_ingreso"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const detalleField = document.getElementById('com-caudal-detalle');
-            const recomendacionField = document.getElementById('com-recomendacion-fugas');
-            
-            if (this.value === 'Sí') {
-                detalleField.classList.add('active');
-                recomendacionField.classList.add('active');
-            } else {
-                detalleField.classList.remove('active');
+    // Estado del medidor
+    const resEstadoMedidorRadios = document.querySelectorAll('#formResidencial input[name="estado_medidor"]');
+    if (resEstadoMedidorRadios.length > 0) {
+        resEstadoMedidorRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const malEstadoField = document.getElementById('res-estado-medidor-mal');
+                if (this.value === 'Mal estado') {
+                    malEstadoField.classList.add('active');
+                } else {
+                    malEstadoField.classList.remove('active');
+                }
+            });
+        });
+    }
+    
+    // Fugas detectadas
+    const resFugasRadios = document.querySelectorAll('#formResidencial input[name="fugas_detectadas"]');
+    if (resFugasRadios.length > 0) {
+        resFugasRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const fugaVisibleField = document.getElementById('res-fuga-visible');
+                const recomendacionField = document.getElementById('res-recomendacion-fugas');
+                
+                // Ocultar ambos inicialmente
+                fugaVisibleField.classList.remove('active');
                 recomendacionField.classList.remove('active');
-            }
+                
+                // Mostrar según corresponda
+                if (this.value === 'Fuga visible') {
+                    fugaVisibleField.classList.add('active');
+                } else if (this.value === 'Fuga no visible') {
+                    recomendacionField.classList.add('active');
+                }
+            });
         });
-    });
-
-
-
-
-
-    // Formulario Residencial - Abastecimiento (Otro)
-    document.getElementById('res-abastecimiento').addEventListener('change', function() {
-        const otroField = document.getElementById('res-abastecimiento-otro');
-        if (this.value === 'Otro') {
-            otroField.classList.add('active');
-        } else {
-            otroField.classList.remove('active');
-        }
-    });
-
-    // Formulario Comercial - Abastecimiento (Otro)
-    document.getElementById('com-abastecimiento').addEventListener('change', function() {
-        const otroField = document.getElementById('com-abastecimiento-otro');
-        if (this.value === 'Otro') {
-            otroField.classList.add('active');
-        } else {
-            otroField.classList.remove('active');
-        }
-    });
-
-
-
-
-    // Formulario Residencial - Consumo aumentado
-    document.querySelectorAll('#formResidencial input[name="consumo_aumentado"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const mesAumentoGroup = document.getElementById('res-mes-aumento-group');
-            const mesAumentoSelect = document.getElementById('res-mes-aumento');
-            
-            if (this.value === 'Sí') {
-                mesAumentoGroup.style.display = 'block';
-                mesAumentoSelect.setAttribute('required', 'required');
+    }
+    
+    // Abastecimiento (Otro)
+    const resAbastecimientoSelect = document.getElementById('res-abastecimiento');
+    if (resAbastecimientoSelect) {
+        resAbastecimientoSelect.addEventListener('change', function() {
+            const otroField = document.getElementById('res-abastecimiento-otro');
+            if (this.value === 'Otro') {
+                otroField.classList.add('active');
             } else {
-                mesAumentoGroup.style.display = 'none';
-                mesAumentoSelect.removeAttribute('required');
+                otroField.classList.remove('active');
             }
         });
-    });
+    }
+    
+    // Caudal de ingreso
+    const resCaudalRadios = document.querySelectorAll('#formResidencial input[name="caudal_ingreso"]');
+    if (resCaudalRadios.length > 0) {
+        resCaudalRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const detalleField = document.getElementById('res-caudal-detalle');
+                if (this.value === 'Sí') {
+                    detalleField.classList.add('active');
+                } else {
+                    detalleField.classList.remove('active');
+                }
+            });
+        });
+    }
+    
+    // ========== FORMULARIO COMERCIAL ==========
+    
+    // Estado del medidor
+    const comEstadoMedidorRadios = document.querySelectorAll('#formComercial input[name="estado_medidor"]');
+    if (comEstadoMedidorRadios.length > 0) {
+        comEstadoMedidorRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const malEstadoField = document.getElementById('com-estado-medidor-mal');
+                if (this.value === 'Mal estado') {
+                    malEstadoField.classList.add('active');
+                } else {
+                    malEstadoField.classList.remove('active');
+                }
+            });
+        });
+    }
+    
+    // Fugas detectadas
+    const comFugasRadios = document.querySelectorAll('#formComercial input[name="fugas_detectadas"]');
+    if (comFugasRadios.length > 0) {
+        comFugasRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const fugaVisibleField = document.getElementById('com-fuga-visible');
+                const recomendacionField = document.getElementById('com-recomendacion-fugas');
+                
+                // Ocultar ambos inicialmente
+                fugaVisibleField.classList.remove('active');
+                recomendacionField.classList.remove('active');
+                
+                // Mostrar según corresponda
+                if (this.value === 'Fuga visible') {
+                    fugaVisibleField.classList.add('active');
+                } else if (this.value === 'Fuga no visible') {
+                    recomendacionField.classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // Horarios específicos
+    const comHorariosRadios = document.querySelectorAll('#formComercial input[name="horarios_especificos"]');
+    if (comHorariosRadios.length > 0) {
+        comHorariosRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const detalleField = document.getElementById('com-horario-detalle');
+                if (this.value === 'Sí') {
+                    detalleField.classList.add('active');
+                } else {
+                    detalleField.classList.remove('active');
+                }
+            });
+        });
+    }
+    
+    // Abastecimiento (Otro)
+    const comAbastecimientoSelect = document.getElementById('com-abastecimiento');
+    if (comAbastecimientoSelect) {
+        comAbastecimientoSelect.addEventListener('change', function() {
+            const otroField = document.getElementById('com-abastecimiento-otro');
+            if (this.value === 'Otro') {
+                otroField.classList.add('active');
+            } else {
+                otroField.classList.remove('active');
+            }
+        });
+    }
+    
+    // Caudal de ingreso
+    const comCaudalRadios = document.querySelectorAll('#formComercial input[name="caudal_ingreso"]');
+    if (comCaudalRadios.length > 0) {
+        comCaudalRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const detalleField = document.getElementById('com-caudal-detalle');
+                if (this.value === 'Sí') {
+                    detalleField.classList.add('active');
+                } else {
+                    detalleField.classList.remove('active');
+                }
+            });
+        });
+    }
     
     // Configurar botones de copiar
     const botonCopiarResidencial = document.getElementById('copiar-resumen-residencial');
@@ -141,6 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             copiarResumen('comercial');
         });
     }
+    
+    console.log('Event listeners configurados correctamente'); // Para debug
 });
 
 // Generar resumen para formulario residencial
@@ -157,38 +226,41 @@ function generarResumenResidencial() {
     // Construir el resumen (residencial)
     let resumen = `ANÁLISIS DE CONSUMO RESIDENCIAL\n\n`;
     resumen += `DATOS BÁSICOS:\n`;
-    resumen += `Número de medidor: ${formData.get('numero_medidor')}\n`;
-    resumen += `Lectura: ${formData.get('lectura')}\n`;
     resumen += `Contrato: ${formData.get('contrato')}\n`;
+    resumen += `Servicio: ${formData.get('servicio')}\n`;
+    resumen += `Estado del medidor: ${formData.get('estado_medidor')}\n`;
+    if (formData.get('estado_medidor') === 'Mal estado' && formData.get('estado_medidor_desc')) {
+        resumen += `Descripción del estado: ${formData.get('estado_medidor_desc')}\n`;
+    }
+    resumen += `Lectura (m³): ${formData.get('lectura_m3')}\n`;
+    if (formData.get('lectura_litros')) {
+        resumen += `Lectura (litros): ${formData.get('lectura_litros')}\n`;
+    }
+    resumen += `Descripción de la vivienda: ${formData.get('descripcion')}\n`;
     resumen += `Personas que habitan: ${formData.get('personas')}\n\n`;
     
     resumen += `INFORMACIÓN DE CONSUMO:\n`;
-    // resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}\n`;
-
-    resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}\n`;
-    // Si es Otro, agregar el texto especificado
+    resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}`;
     if (formData.get('abastecimiento') === 'Otro' && formData.get('abastecimiento_otro')) {
         resumen += ` (${formData.get('abastecimiento_otro')})`;
     }
-
-
-    resumen += `Cambios en habitantes (6-12 meses): ${formData.get('cambios_habitantes')}\n`;
-
-    resumen += `Consumo aumentado: ${formData.get('consumo_aumentado')}\n`;
-    if (formData.get('consumo_aumentado') === 'Sí') {
-        resumen += `Mes de notificación de aumento: ${formData.get('mes_aumento')}\n`;
-    }
-
-    resumen += `Mes de notificación de aumento: ${formData.get('mes_aumento')}\n\n`;
+    resumen += `\nCambios en habitantes (6-12 meses): ${formData.get('cambios_habitantes')}\n\n`;
     
     resumen += `DETECCIÓN DE FUGAS:\n`;
     resumen += `Fugas detectadas: ${formData.get('fugas_detectadas')}\n`;
+    if (formData.get('fugas_detectadas') === 'Fuga visible' && formData.get('ubicacion_fuga')) {
+        resumen += `Ubicación de la fuga: ${formData.get('ubicacion_fuga')}\n`;
+    }
     resumen += `Prueba de consumo realizada: ${formData.get('prueba_consumo')}\n`;
     resumen += `Registro de caudal de ingreso: ${formData.get('caudal_ingreso')}\n`;
     
     // Agregar detalle del caudal si aplica
     if (formData.get('caudal_ingreso') === 'Sí' && formData.get('caudal_cantidad')) {
         resumen += `Caudal registrado: ${formData.get('caudal_cantidad')} Litros/min\n`;
+    }
+    
+    // Si hay fuga no visible, agregar recomendación
+    if (formData.get('fugas_detectadas') === 'Fuga no visible') {
         resumen += `\nRECOMENDACIÓN: Se recomienda al usuario el servicio de detección y reparación de fugas`;
     }
     
@@ -214,39 +286,46 @@ function generarResumenComercial() {
     // Construir el resumen (comercial-industrial)
     let resumen = `ANÁLISIS DE CONSUMO COMERCIAL-INDUSTRIAL\n\n`;
     resumen += `DATOS BÁSICOS:\n`;
-    resumen += `Número de medidor: ${formData.get('numero_medidor')}\n`;
-    resumen += `Lectura: ${formData.get('lectura')}\n`;
     resumen += `Contrato: ${formData.get('contrato')}\n`;
-    resumen += `Actividad: ${formData.get('actividad')}\n\n`;
+    resumen += `Servicio: ${formData.get('servicio')}\n`;
+    resumen += `Estado del medidor: ${formData.get('estado_medidor')}\n`;
+    if (formData.get('estado_medidor') === 'Mal estado' && formData.get('estado_medidor_desc')) {
+        resumen += `Descripción del estado: ${formData.get('estado_medidor_desc')}\n`;
+    }
+    resumen += `Lectura (m³): ${formData.get('lectura_m3')}\n`;
+    if (formData.get('lectura_litros')) {
+        resumen += `Lectura (litros): ${formData.get('lectura_litros')}\n`;
+    }
+    resumen += `Descripción del local/industria: ${formData.get('descripcion')}\n`;
+    resumen += `Actividad: ${formData.get('actividad')}\n`;
+    resumen += `Empleados/personas que trabajan: ${formData.get('empleados')}\n\n`;
     
     resumen += `INFORMACIÓN OPERATIVA:\n`;
-    // resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}\n`;
-
-    resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}\n`;
-    // Si es Otro, agregar el texto especificado
+    resumen += `Tipo de abastecimiento: ${formData.get('abastecimiento')}`;
     if (formData.get('abastecimiento') === 'Otro' && formData.get('abastecimiento_otro')) {
         resumen += ` (${formData.get('abastecimiento_otro')})`;
     }
-
-
-    resumen += `Empleados/personas que trabajan: ${formData.get('empleados')}\n`;
-    resumen += `Horarios específicos de operación: ${formData.get('horarios_especificos')}\n`;
-    
-    // Agregar detalle de horario si aplica
+    resumen += `\nHorarios específicos de operación: ${formData.get('horarios_especificos')}\n`;
     if (formData.get('horarios_especificos') === 'Sí' && formData.get('horario')) {
         resumen += `Horario indicado: ${formData.get('horario')}\n`;
     }
-    
     resumen += `Tipo de consumo: ${formData.get('tipo_consumo')}\n\n`;
     
     resumen += `DETECCIÓN DE FUGAS:\n`;
     resumen += `Fugas detectadas: ${formData.get('fugas_detectadas')}\n`;
+    if (formData.get('fugas_detectadas') === 'Fuga visible' && formData.get('ubicacion_fuga')) {
+        resumen += `Ubicación de la fuga: ${formData.get('ubicacion_fuga')}\n`;
+    }
     resumen += `Prueba de consumo realizada: ${formData.get('prueba_consumo')}\n`;
     resumen += `Registro de caudal de ingreso: ${formData.get('caudal_ingreso')}\n`;
     
     // Agregar detalle del caudal si aplica
     if (formData.get('caudal_ingreso') === 'Sí' && formData.get('caudal_cantidad')) {
         resumen += `Caudal registrado: ${formData.get('caudal_cantidad')} Litros/min\n`;
+    }
+    
+    // Si hay fuga no visible, agregar recomendación
+    if (formData.get('fugas_detectadas') === 'Fuga no visible') {
         resumen += `\nRECOMENDACIÓN: Se recomienda al usuario el servicio de detección y reparación de fugas`;
     }
     
@@ -263,9 +342,6 @@ function volverAlFormularioResidencial() {
     document.getElementById('resumen-residencial').classList.remove('active');
     document.getElementById('formResidencial').reset();
 
-    // Ocultar el campo de abastecimiento otro
-    document.getElementById('res-abastecimiento-otro').classList.remove('active');
-    
     // Ocultar todos los campos condicionales
     document.querySelectorAll('#formResidencial .conditional-field').forEach(field => {
         field.classList.remove('active');
@@ -285,9 +361,6 @@ function volverAlFormularioComercial() {
     document.getElementById('resumen-comercial').classList.remove('active');
     document.getElementById('formComercial').reset();
 
-    // Ocultar el campo de abastecimiento otro
-    document.getElementById('com-abastecimiento-otro').classList.remove('active');
-    
     // Ocultar todos los campos condicionales
     document.querySelectorAll('#formComercial .conditional-field').forEach(field => {
         field.classList.remove('active');
@@ -352,4 +425,3 @@ function copiarResumen(tipo) {
             alert('Resumen copiado al portapapeles');
         });
 }
-
