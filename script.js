@@ -263,6 +263,10 @@ function generarResumenResidencial() {
     if (formData.get('fugas_detectadas') === 'Fuga no visible') {
         resumen += `\nRECOMENDACIÓN: Se recomienda al usuario el servicio de detección y reparación de fugas`;
     }
+
+    if (formData.get('observacion')) {
+        resumen += `\nOBSERVACIÓN FINAL:\n${formData.get('observacion')}\n`;
+    }
     
     // Mostrar el resumen
     document.getElementById('resumen-contenido-residencial').textContent = resumen;
@@ -327,6 +331,10 @@ function generarResumenComercial() {
     // Si hay fuga no visible, agregar recomendación
     if (formData.get('fugas_detectadas') === 'Fuga no visible') {
         resumen += `\nRECOMENDACIÓN: Se recomienda al usuario el servicio de detección y reparación de fugas`;
+    }
+
+    if (formData.get('observacion')) {
+        resumen += `\nOBSERVACIÓN FINAL:\n${formData.get('observacion')}\n`;
     }
     
     // Mostrar el resumen
