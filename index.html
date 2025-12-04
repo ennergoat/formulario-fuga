@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 
-                <div class="form-section">
+                <!-- <div class="form-section">
                     <h2>Detección de Fugas</h2>
                     
                     <div class="form-group">
@@ -154,7 +154,83 @@
                             <input type="number" id="res-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
                         </div>
                     </div>
+                </div> -->
+
+                <div class="form-section">
+                    <h2>Detección de Fugas</h2>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Registra caudal de ingreso?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                        </div>
+                        <div id="res-caudal-detalle" class="conditional-field">
+                            <label for="res-caudal-cantidad">Cuantificar registro (Litros/min)</label>
+                            <input type="number" id="res-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">Usuario permite realizar prueba de consumo</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
+                        </div>
+                        
+                        <div id="res-prueba-no-detalle" class="conditional-field">
+                            <label class="required">Especifique la razón:</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="prueba_razon" value="usuario ausente"> Usuario ausente</label>
+                                <label><input type="radio" name="prueba_razon" value="usuario no permite el ingreso"> Usuario no permite el ingreso</label>
+                                <label><input type="radio" name="prueba_razon" value="otra"> Otra</label>
+                            </div>
+                            
+                            <div id="res-usuario-no-permite" class="conditional-field" style="margin-top: 10px;">
+                                <label for="res-motivo-no-permite">Motivo:</label>
+                                <input type="text" id="res-motivo-no-permite" name="motivo_no_permite" placeholder="Ingrese el motivo">
+                            </div>
+                            
+                            <div id="res-otra-razon" class="conditional-field" style="margin-top: 10px;">
+                                <label for="res-otra-razon-text">Especifique:</label>
+                                <input type="text" id="res-otra-razon-text" name="otra_razon" placeholder="Ingrese la razón">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="res-fugas-group">
+                        <label class="required">¿Ha detectado problemas de fugas?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="fugas_detectadas" value="No se detecto" required> No se detectó</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Se detectó fuga visible" required> Se detectó fuga visible</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Se detectó fuga no visible" required> Se detectó fuga no visible</label>
+                        </div>
+                        
+                        <div id="res-no-se-detecto" class="conditional-field">
+                            <label for="res-puntos-agua-no">Se revisaron</label>
+                            <input type="number" id="res-puntos-agua-no" name="puntos_agua_no" placeholder="00" min="1" max="99" style="width: 80px; display: inline-block; margin: 0 5px;">
+                            puntos de agua y se identificó que no existe fuga
+                        </div>
+                        
+                        <div id="res-fuga-visible-detalle" class="conditional-field">
+                            <label for="res-puntos-agua-si">Se revisaron</label>
+                            <input type="number" id="res-puntos-agua-si" name="puntos_agua_si" placeholder="00" min="1" max="99" style="width: 80px; display: inline-block; margin: 0 5px;">
+                            puntos de agua y se identificó que existe fuga en:
+                            <input type="text" id="res-ubicacion-fuga-detalle" name="ubicacion_fuga_detalle" placeholder="Describa la ubicación de la fuga" style="margin-top: 10px;">
+                        </div>
+                        
+                        <div id="res-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="res-persona-atendio-group">
+                        <label for="res-persona-atendio" class="required">Nombre de la persona que atendió</label>
+                        <input type="text" id="res-persona-atendio" name="persona_atendio" required placeholder="Ingrese el nombre completo">
+                    </div>
                 </div>
+
+
 
 
                 <div class="form-section">
@@ -162,6 +238,16 @@
                     <div class="form-group">
                         <label for="res-observacion">Observación final</label>
                         <textarea id="res-observacion" name="observacion" rows="4" placeholder="Escriba cualquier observación adicional"></textarea>
+                    </div>
+                </div>
+                
+
+                <div class="form-section">
+                    <h2>Mantenimiento</h2>
+                    <div class="form-group">
+                        <div style="background-color: #e8f4fd; color: #0e4f88; padding: 12px 15px; border-left: 4px solid #3498db; border-radius: 5px; font-size: 15px;">
+                            <strong>Se realiza mantenimiento liviano al medidor</strong>
+                        </div>
                     </div>
                 </div>
 
@@ -295,7 +381,7 @@
                     </div>
                 </div>
                 
-                <div class="form-section">
+                <!-- <div class="form-section">
                     <h2>Detección de Fugas</h2>
                     
                     <div class="form-group">
@@ -333,7 +419,85 @@
                             <input type="number" id="com-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
                         </div>
                     </div>
+                </div> -->
+
+
+                <div class="form-section">
+                    <h2>Detección de Fugas</h2>
+                    
+                    <div class="form-group">
+                        <label class="required">¿Registra caudal de ingreso?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
+                        </div>
+                        <div id="com-caudal-detalle" class="conditional-field">
+                            <label for="com-caudal-cantidad">Cuantificar registro (Litros/min)</label>
+                            <input type="number" id="com-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">Usuario permite realizar prueba de consumo</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
+                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
+                        </div>
+                        
+                        <div id="com-prueba-no-detalle" class="conditional-field">
+                            <label class="required">Especifique la razón:</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="prueba_razon" value="usuario ausente"> Usuario ausente</label>
+                                <label><input type="radio" name="prueba_razon" value="usuario no permite el ingreso"> Usuario no permite el ingreso</label>
+                                <label><input type="radio" name="prueba_razon" value="otra"> Otra</label>
+                            </div>
+                            
+                            <div id="com-usuario-no-permite" class="conditional-field" style="margin-top: 10px;">
+                                <label for="com-motivo-no-permite">Motivo:</label>
+                                <input type="text" id="com-motivo-no-permite" name="motivo_no_permite" placeholder="Ingrese el motivo">
+                            </div>
+                            
+                            <div id="com-otra-razon" class="conditional-field" style="margin-top: 10px;">
+                                <label for="com-otra-razon-text">Especifique:</label>
+                                <input type="text" id="com-otra-razon-text" name="otra_razon" placeholder="Ingrese la razón">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="com-fugas-group">
+                        <label class="required">¿Ha detectado problemas de fugas?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="fugas_detectadas" value="No se detecto" required> No se detectó</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Se detectó fuga visible" required> Se detectó fuga visible</label>
+                            <label><input type="radio" name="fugas_detectadas" value="Se detectó fuga no visible" required> Se detectó fuga no visible</label>
+                        </div>
+                        
+                        <div id="com-no-se-detecto" class="conditional-field">
+                            <label for="com-puntos-agua-no">Se revisaron</label>
+                            <input type="number" id="com-puntos-agua-no" name="puntos_agua_no" placeholder="00" min="1" max="99" style="width: 80px; display: inline-block; margin: 0 5px;">
+                            puntos de agua y se identificó que no existe fuga
+                        </div>
+                        
+                        <div id="com-fuga-visible-detalle" class="conditional-field">
+                            <label for="com-puntos-agua-si">Se revisaron</label>
+                            <input type="number" id="com-puntos-agua-si" name="puntos_agua_si" placeholder="00" min="1" max="99" style="width: 80px; display: inline-block; margin: 0 5px;">
+                            puntos de agua y se identificó que existe fuga en:
+                            <input type="text" id="com-ubicacion-fuga-detalle" name="ubicacion_fuga_detalle" placeholder="Describa la ubicación de la fuga" style="margin-top: 10px;">
+                        </div>
+                        
+                        <div id="com-recomendacion-fugas" class="info-message">
+                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="com-persona-atendio-group">
+                        <label for="com-persona-atendio" class="required">Nombre de la persona que atendió</label>
+                        <input type="text" id="com-persona-atendio" name="persona_atendio" required placeholder="Ingrese el nombre completo">
+                    </div>
                 </div>
+
+
+
 
                 <!-- Nuevo -->
                 <div class="form-section">
@@ -343,6 +507,18 @@
                         <textarea id="res-observacion" name="observacion" rows="4" placeholder="Escriba cualquier observación adicional"></textarea>
                     </div>
                 </div>
+
+
+
+                <div class="form-section">
+                    <h2>Mantenimiento</h2>
+                    <div class="form-group">
+                        <div style="background-color: #e8f4fd; color: #0e4f88; padding: 12px 15px; border-left: 4px solid #3498db; border-radius: 5px; font-size: 15px;">
+                            <strong>Se realiza mantenimiento liviano al medidor</strong>
+                        </div>
+                    </div>
+                </div>
+                
 
 
 

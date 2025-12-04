@@ -395,3 +395,31 @@ textarea:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
+
+/* Estilos para campos deshabilitados/inhabilitados */
+.form-group[style*="opacity: 0.5"] {
+    background-color: #f0f0f0;
+}
+
+.form-group[style*="opacity: 0.5"] label {
+    color: #888;
+}
+
+.form-group[style*="pointer-events: none"] input,
+.form-group[style*="pointer-events: none"] select,
+.form-group[style*="pointer-events: none"] textarea {
+    background-color: #f5f5f5;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.form-group[style*="pointer-events: none"] .radio-group label {
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* Estilo para los inputs de puntos de agua */
+input[type="number"][placeholder="00"] {
+    text-align: center;
+}
+
