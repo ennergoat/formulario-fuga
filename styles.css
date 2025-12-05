@@ -423,3 +423,73 @@ input[type="number"][placeholder="00"] {
     text-align: center;
 }
 
+/* Estilo para el campo de número en la cadena de custodio */
+input[placeholder="Número"] {
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+
+/* ============================================= */
+/* ESTILOS PARA BOTÓN DE GUARDAR Y MENSAJES */
+/* ============================================= */
+
+.btn-guardar {
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-guardar:hover {
+    background-color: #7d3c98;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-guardar:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Animaciones para mensajes */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Mejora visual para los botones en móviles */
+@media (max-width: 768px) {
+    .btn-copiar, .btn-guardar {
+        width: 100%;
+        margin: 5px 0;
+        justify-content: center;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+    
+    .buttons button {
+        margin: 5px 0;
+    }
+}

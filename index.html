@@ -56,15 +56,30 @@
                         </select>
                     </div>
                     
+
+
                     <div class="form-group">
                         <label class="required">Estado del medidor</label>
                         <div class="radio-group">
                             <label><input type="radio" name="estado_medidor" value="Buen estado" required> Buen estado</label>
                             <label><input type="radio" name="estado_medidor" value="Mal estado" required> Mal estado</label>
+                            <label><input type="radio" name="estado_medidor" value="Visor Derio" required> Visor Derio</label>
+                            <label><input type="radio" name="estado_medidor" value="Paralizado" required> Paralizado</label>
+                            <label><input type="radio" name="estado_medidor" value="Otro" required> Otro</label>
                         </div>
-                        <div id="res-estado-medidor-mal" class="conditional-field">
-                            <label for="res-estado-medidor-desc">Describa el estado del medidor</label>
-                            <input type="text" id="res-estado-medidor-desc" name="estado_medidor_desc" placeholder="Describa el problema">
+                        
+                        <div id="res-estado-medidor-otro-field" class="conditional-field">
+                            <label for="res-estado-medidor-otro">Especifique el estado del medidor:</label>
+                            <input type="text" id="res-estado-medidor-otro" name="estado_medidor_otro" placeholder="Ingrese el estado del medidor">
+                        </div>
+                        
+                        <div id="res-cadena-custodio" class="conditional-field">
+                            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #f39c12; margin-top: 10px;">
+                                <label for="res-numero-modificacion">Se realiza cadena de custodio, número de sello, se modifica número</label>
+                                <input type="number" id="res-numero-modificacion" name="numero_modificacion" 
+                                    placeholder="00" style="width: 100px; margin: 0 5px;">
+                                por revisión de medida, se instala medidor
+                            </div>
                         </div>
                     </div>
                     
@@ -116,45 +131,7 @@
                     </div>
                 </div>
                 
-                <!-- <div class="form-section">
-                    <h2>Detección de Fugas</h2>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Ha detectado problemas de fugas?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
-                            <label><input type="radio" name="fugas_detectadas" value="Fuga visible" required> Fuga visible</label>
-                            <label><input type="radio" name="fugas_detectadas" value="Fuga no visible" required> Fuga no visible</label>
-                        </div>
-                        <div id="res-fuga-visible" class="conditional-field">
-                            <label for="res-ubicacion-fuga">¿Dónde es la fuga?</label>
-                            <input type="text" id="res-ubicacion-fuga" name="ubicacion_fuga" placeholder="Describa la ubicación de la fuga">
-                        </div>
-                        <div id="res-recomendacion-fugas" class="info-message">
-                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Se realiza prueba de consumo?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
-                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Registra caudal de ingreso?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
-                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
-                        </div>
-                        <div id="res-caudal-detalle" class="conditional-field">
-                            <label for="res-caudal-cantidad">Cuantificar registro (Litros/min)</label>
-                            <input type="number" id="res-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
-                        </div>
-                    </div>
-                </div> -->
+
 
                 <div class="form-section">
                     <h2>Detección de Fugas</h2>
@@ -304,18 +281,35 @@
                         </select>
                     </div>
                     
+
+
                     <div class="form-group">
                         <label class="required">Estado del medidor</label>
                         <div class="radio-group">
                             <label><input type="radio" name="estado_medidor" value="Buen estado" required> Buen estado</label>
                             <label><input type="radio" name="estado_medidor" value="Mal estado" required> Mal estado</label>
+                            <label><input type="radio" name="estado_medidor" value="Visor Derio" required> Visor Derio</label>
+                            <label><input type="radio" name="estado_medidor" value="Paralizado" required> Paralizado</label>
+                            <label><input type="radio" name="estado_medidor" value="Otro" required> Otro</label>
                         </div>
-                        <div id="com-estado-medidor-mal" class="conditional-field">
-                            <label for="com-estado-medidor-desc">Describa el estado del medidor</label>
-                            <input type="text" id="com-estado-medidor-desc" name="estado_medidor_desc" placeholder="Describa el problema">
+                        
+                        <div id="com-estado-medidor-otro-field" class="conditional-field">
+                            <label for="com-estado-medidor-otro">Especifique el estado del medidor:</label>
+                            <input type="text" id="com-estado-medidor-otro" name="estado_medidor_otro" placeholder="Ingrese el estado del medidor">
                         </div>
-                    </div>
-                    
+                        
+                        <div id="com-cadena-custodio" class="conditional-field">
+                            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 3px solid #f39c12; margin-top: 10px;">
+                                <label for="com-numero-modificacion">Se realiza cadena de custodio, número de sello, se modifica número</label>
+                                <input type="number" id="com-numero-modificacion" name="numero_modificacion" 
+                                    placeholder="00" style="width: 100px; margin: 0 5px;">
+                                por revisión de medida, se instala medidor
+                            </div>
+                        </div>
+                    </div>                                        
+
+
+
                     <div class="form-group">
                         <label for="com-lectura-m3" class="required">Lectura (m³)</label>
                         <input type="number" id="com-lectura-m3" name="lectura_m3" required placeholder="Ingrese la lectura en m³">
@@ -381,45 +375,7 @@
                     </div>
                 </div>
                 
-                <!-- <div class="form-section">
-                    <h2>Detección de Fugas</h2>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Ha detectado problemas de fugas?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="fugas_detectadas" value="No" required> No</label>
-                            <label><input type="radio" name="fugas_detectadas" value="Fuga visible" required> Fuga visible</label>
-                            <label><input type="radio" name="fugas_detectadas" value="Fuga no visible" required> Fuga no visible</label>
-                        </div>
-                        <div id="com-fuga-visible" class="conditional-field">
-                            <label for="com-ubicacion-fuga">¿Dónde es la fuga?</label>
-                            <input type="text" id="com-ubicacion-fuga" name="ubicacion_fuga" placeholder="Describa la ubicación de la fuga">
-                        </div>
-                        <div id="com-recomendacion-fugas" class="info-message">
-                            <strong>Recomendación:</strong> Se recomienda al usuario el servicio de detección y reparación de fugas
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Se realiza prueba de consumo?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="prueba_consumo" value="Sí" required> Sí</label>
-                            <label><input type="radio" name="prueba_consumo" value="No" required> No</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="required">¿Registra caudal de ingreso?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="caudal_ingreso" value="Sí" required> Sí</label>
-                            <label><input type="radio" name="caudal_ingreso" value="No" required> No</label>
-                        </div>
-                        <div id="com-caudal-detalle" class="conditional-field">
-                            <label for="com-caudal-cantidad">Cuantificar registro (Litros/min)</label>
-                            <input type="number" id="com-caudal-cantidad" name="caudal_cantidad" placeholder="Ingrese los litros por minuto">
-                        </div>
-                    </div>
-                </div> -->
+
 
 
                 <div class="form-section">
