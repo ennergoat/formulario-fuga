@@ -864,7 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // =============================================
 
 // REEMPLAZA ESTA URL CON LA DE TU SCRIPT DESPLEGADO
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/TU_ID_AQUI/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysNT8PH2KjGF6izbHexN9qa3LdkOWi0Px0k7Tta38f3ASizDoqW3GTvmFaGsNi8ETx/exec';
 
 // Función para guardar datos en Google Sheets
 async function guardarEnGoogleSheets(tipo) {
